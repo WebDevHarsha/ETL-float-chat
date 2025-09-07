@@ -1,0 +1,5 @@
+netCDF4
+pandas
+SQLAlchemy
+chromadb
+python-dotenv
