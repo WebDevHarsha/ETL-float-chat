@@ -135,7 +135,8 @@ def handle_query():
     try:
         with engine.connect() as conn:
             result = conn.execute(text(sql_query))
-            rows = [dict(r) for r in result.mappings()]
+            rows = [dict(row) for row in result.fetchall()]  # works on older SQLAlchemy
+
     except Exception as e:
         return jsonify({"error": f"SQL execution failed: {str(e)}", "sql_generated": sql_query}), 500
 
