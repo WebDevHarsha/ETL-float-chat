@@ -9,7 +9,7 @@ def generate_sql(user_query: str, retrieved_meta: list):
     Do NOT include markdown code fences.
     """
     
-    model = gemini_client.GenerativeModel('gemini-2.0-flash-exp')
+    model = gemini_client.GenerativeModel('gemini-2.5-flash')
     response = model.generate_content(prompt)
     
     sql_query = response.text.strip()
