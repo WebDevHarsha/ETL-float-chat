@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from services.chroma_service import query_metadata
-from services.gemini_service import generate_sql
+from services.gemini_service import generate_sql, summarize_results
 from services.db_service import execute_sql
 
 query_bp = Blueprint("query", __name__)
@@ -28,11 +28,15 @@ def handle_query():
     except Exception as e:
         return jsonify({"error": f"SQL execution failed: {str(e)}", "sql_generated": sql_query}), 500
 
+    #STEP 4: Summarize
+    summary = summarize_results(user_query, sql_query, rows)
+
     return jsonify({
         "query": user_query,
         "metadata_used": retrieved_meta,
         "sql_used": sql_query,
-        "results": rows
+        "results": rows,
+        "summary": summary
     })
 
 @query_bp.route("/health", methods=["GET"])
