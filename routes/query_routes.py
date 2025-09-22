@@ -34,3 +34,31 @@ def handle_query():
         "sql_used": sql_query,
         "results": rows
     })
+
+@query_bp.route("/health", methods=["GET"])
+def health_check():
+    """Health check endpoint"""
+    return jsonify({
+        "status": "healthy",
+        "service": "ETL FloatChat API"
+    }), 200
+
+@query_bp.route("/schema", methods=["GET"])
+def get_schema():
+    """Return the database schema information"""
+    return jsonify({
+        "table": "ocean_data",
+        "columns": {
+            "identifiers": ["time", "cast", "cruise", "transect", "event", "station"],
+            "location": ["longitude", "latitude", "depth", "pressure"],
+            "physical_properties": ["temperature", "salinity", "density"],
+            "optical_properties": ["transmission", "par", "fluorescence"],
+            "chemical_properties": ["oxygen", "oxygenSaturation"]
+        },
+        "sample_queries": [
+            "Show me temperature and salinity data for depths greater than 100m",
+            "What is the average oxygen level at different stations?",
+            "Find locations with high fluorescence values",
+            "Show the temperature range for each cruise"
+        ]
+    }), 200

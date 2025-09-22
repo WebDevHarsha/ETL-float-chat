@@ -3,12 +3,13 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 import chromadb
 from chromadb.utils import embedding_functions
-from google import genai
+import google.generativeai as genai
 
 # Load env
 load_dotenv(".env.local")
 
 POSTGRES_LINK = os.getenv("POSTGRES_LINK")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 NC_FILE = "ocean.nc"
 
 # DB
@@ -22,4 +23,5 @@ meta_collection = chroma_client.get_or_create_collection(
 )
 
 # Gemini
-gemini_client = genai.Client()
+genai.configure(api_key=GOOGLE_API_KEY)
+gemini_client = genai

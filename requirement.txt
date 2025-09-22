@@ -3,5 +3,6 @@ pandas
 SQLAlchemy
 chromadb
 python-dotenv
-langchain
-langgraph
+flask
+flask-cors
+google-generativeai
