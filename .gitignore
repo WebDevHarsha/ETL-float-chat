@@ -1,4 +1,4 @@
 test.py
 chroma_db
 .env.local
-trash
+__pycache__
