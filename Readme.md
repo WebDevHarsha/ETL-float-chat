@@ -186,6 +186,3 @@ This project currently does not include a license file. If this is intended for 
 
 Contributions are welcome. If you plan to improve the ETL logic, add validation, or enhance the AI query flow, please keep the project modular and document changes clearly.
 
----
-
-If you want, I can also generate a more polished version with badges, screenshots, architecture diagram text, and a cleaner API section tailored for GitHub.
